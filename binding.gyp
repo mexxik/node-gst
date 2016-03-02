@@ -8,7 +8,7 @@
         "src/Element.cpp",
         "src/Pipeline.cpp"
       ],
-      "cflags" : [ "-std=c++1", "-stdlib=libc++" ],
+
       "conditions": [
         [ "OS!='win'", {
           "cflags+": [ "-std=c++11" ],
@@ -20,23 +20,24 @@
             "OTHER_CPLUSPLUSFLAGS" : [ "-std=c++11", "-stdlib=libc++" ],
             "OTHER_LDFLAGS": [ "-stdlib=libc++" ],
             "MACOSX_DEPLOYMENT_TARGET": "10.7"
-          }
+          },
+          "include_dirs": [
+              "/Library/Frameworks/GStreamer.framework/Headers",
+              "<!(node -e \"require('nan')\")"
+            ],
+            "library_dirs": [
+              "/Library/Frameworks/GStreamer.framework/Versions/1.0/lib"
+            ]
+        }],
+        [ "OS=='linux'", {
+            "include_dirs": [
+                "<!@(pkg-config gstreamer-1.0 --cflags-only-I | sed s/-I//g)",
+                "<!(node -e \"require('nan')\")"
+              ],
+              "libraries": [
+                "<!@(pkg-config gstreamer-1.0 --libs)"
+              ],
         }]
-      ],
-      "link_settings": {
-        "libraries": [
-          "libgstreamer-1.0.a"
-        ],
-        "ldflags": [
-          "-Wl,-rpath,/Library/Frameworks/GStreamer.framework/Versions/1.0/lib"
-        ]
-      },
-      "include_dirs": [
-        "/Library/Frameworks/GStreamer.framework/Headers",
-        "<!(node -e \"require('nan')\")"
-      ],
-      "library_dirs": [
-        "/Library/Frameworks/GStreamer.framework/Versions/1.0/lib"
       ]
     }
   ]

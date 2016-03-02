@@ -37,8 +37,6 @@ private:
     Streamer();
     ~Streamer();
 
-    static void New(const v8::FunctionCallbackInfo<v8::Value>& args);
-
     //static void GetVersion(const v8::FunctionCallbackInfo<v8::Value>& args);
     //static void CreatePipeline(const v8::FunctionCallbackInfo<v8::Value>& args);
     //static void CreateElement(const v8::FunctionCallbackInfo<v8::Value>& args);

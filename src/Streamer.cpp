@@ -38,15 +38,12 @@ NAN_METHOD(Streamer::New) {
 }
 
 NAN_METHOD(Streamer::Init) {
-    int argc = 0;
-    char argv[0];
-
     guint _majorVersion;
     guint _minorVersion;
     guint _microVersion;
     guint _nanoVersion;
 
-    gst_init(&argc, NULL);
+    gst_init(NULL, NULL);
 
     gst_version (&_majorVersion, &_minorVersion, &_microVersion, &_nanoVersion);
 }
