@@ -10,11 +10,14 @@
 
 using namespace v8;
 
-NAN_MODULE_INIT(init) {
-    Streamer::Initialize(target);
-    Element::Initialize(target);
-    Pipeline::Initialize(target);
+//NAN_MODULE_INIT(init) {
+void InitAll(Local<Object> exports) {
+    Streamer::Initialize(exports);
+    Element::Initialize(exports);
+    Pipeline::Initialize(exports);
 }
+
+NODE_MODULE(streamer, InitAll)
 
 /*void InitAll(Local<Object> exports) {
     Streamer::Init(exports);
@@ -32,4 +35,3 @@ void init(Local<Object> exports) {
 
 //NODE_MODULE(addon, init)
 
-NODE_MODULE(streamer, init)

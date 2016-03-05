@@ -15,11 +15,13 @@
 class Element : public Nan::ObjectWrap{
 public:
 
-    static Nan::Persistent<v8::FunctionTemplate> constructor;
-    static void Initialize(Nan::ADDON_REGISTER_FUNCTION_ARGS_TYPE target);
-    static NAN_METHOD(New);
+    static v8::Persistent<v8::Function> constructor;
+    static void Initialize(v8::Local<v8::Object> exports);
+    //static NAN_METHOD(New);
+    static void New(const v8::FunctionCallbackInfo<v8::Value>& info);
 
-    static NAN_METHOD(Play);
+    //static NAN_METHOD(Play);
+    static void Play(const v8::FunctionCallbackInfo<v8::Value>& info);
 
     inline GstElement *gstElement() { return _gstElement; }
     inline void gstElement(GstElement *value) { _gstElement = value; }
@@ -28,6 +30,8 @@ public:
 protected:
     Element();
     ~Element();
+
+    void Emit(const v8::FunctionCallbackInfo<v8::Value>& info, v8::Local<v8::String> name);
 
     GstElement *_gstElement;
 };

@@ -20,11 +20,13 @@
 class Pipeline : public Element{
 public:
 
-    static Nan::Persistent<v8::FunctionTemplate> constructor;
-    static void Initialize(Nan::ADDON_REGISTER_FUNCTION_ARGS_TYPE target);
+    static v8::Persistent<v8::Function> constructor;
+    static void Initialize(v8::Local<v8::Object> exports);
     //static NAN_METHOD(New);
-    static NAN_METHOD(ParseLaunch);
-    static NAN_METHOD(Start);
+    //static NAN_METHOD(ParseLaunch);
+    //static NAN_METHOD(Start);
+    static void ParseLaunch(const v8::FunctionCallbackInfo<v8::Value>& info);
+    static void Start(const v8::FunctionCallbackInfo<v8::Value>& info);
 
     //static NAN_METHOD(Play);
 

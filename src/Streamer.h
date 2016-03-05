@@ -22,11 +22,13 @@ extern "C" {
 class Streamer : public Nan::ObjectWrap {
 public:
     //static void Init(v8::Handle<v8::Object> target);
-    static Nan::Persistent<v8::FunctionTemplate> constructor;
-    static void Initialize(Nan::ADDON_REGISTER_FUNCTION_ARGS_TYPE target);
-    static NAN_METHOD(New);
+    static v8::Persistent<v8::Function> constructor;
+    static void Initialize(v8::Local<v8::Object> exports);
+    static void New(const v8::FunctionCallbackInfo<v8::Value>& info);
+    //static NAN_METHOD(New);
 
-    static NAN_METHOD(Init);
+    static void Init(const v8::FunctionCallbackInfo<v8::Value>& info);
+    //static NAN_METHOD(Init);
 
     inline guint majorVersion() { return _majorVersion; }
     inline void majorVersion(guint value) {_majorVersion = value; }

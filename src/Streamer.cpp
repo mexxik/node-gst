@@ -7,7 +7,7 @@
 using namespace v8;
 using namespace std;
 
-Nan::Persistent<FunctionTemplate> Streamer::constructor;
+Persistent<Function> Streamer::constructor;
 
 Streamer::Streamer() {
 
@@ -17,27 +17,28 @@ Streamer::~Streamer() {
 
 }
 
-void Streamer::Initialize(Nan::ADDON_REGISTER_FUNCTION_ARGS_TYPE target) {
-    Nan::HandleScope scope;
+void Streamer::Initialize(v8::Local<v8::Object> exports) {
+    Isolate* isolate = exports->GetIsolate();
 
-    Local<FunctionTemplate> ctor = Nan::New<FunctionTemplate>(Pipeline::New);
-    constructor.Reset(ctor);
-    ctor->InstanceTemplate()->SetInternalFieldCount(1);
-    ctor->SetClassName(Nan::New("Streamer").ToLocalChecked());
+    Local<FunctionTemplate> tpl = FunctionTemplate::New(isolate, New);
+    tpl->InstanceTemplate()->SetInternalFieldCount(1);
+    tpl->SetClassName(String::NewFromUtf8(isolate, "Streamer"));
 
-    //Local<ObjectTemplate> proto = ctor->PrototypeTemplate();
-    Nan::SetPrototypeMethod(ctor, "init", Init);
 
-    Nan::Set(target, Nan::New("Streamer").ToLocalChecked(), ctor->GetFunction());
+    NODE_SET_PROTOTYPE_METHOD(tpl, "init", Init);
+
+    //Nan::Set(target, Nan::New("Pipeline").ToLocalChecked(), ctor->GetFunction());
+    constructor.Reset(isolate, tpl->GetFunction());
+    exports->Set(String::NewFromUtf8(isolate, "Streamer"), tpl->GetFunction());
 }
 
-NAN_METHOD(Streamer::New) {
+void Streamer::New(const FunctionCallbackInfo<Value>& info) {
     Streamer* streamer = new Streamer();
     streamer->Wrap(info.This());
     info.GetReturnValue().Set(info.This());
 }
 
-NAN_METHOD(Streamer::Init) {
+void Streamer::Init(const FunctionCallbackInfo<Value>& info) {
     guint _majorVersion;
     guint _minorVersion;
     guint _microVersion;
