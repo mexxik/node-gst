@@ -6,6 +6,7 @@
 #define MLG_STREAMER_PIPELINE_H
 
 #include <string>
+#include <iostream>
 
 #include <node.h>
 #include <node_object_wrap.h>

@@ -34,8 +34,15 @@ void Pipeline::Initialize(Nan::ADDON_REGISTER_FUNCTION_ARGS_TYPE target) {
 
 NAN_METHOD(Pipeline::ParseLaunch) {
     if (info[0]->IsString()) {
-        String::Utf8Value url(info[0]);
-        GstElement *gstPipeline = gst_parse_launch("playbin uri=http://docs.gstreamer.com/media/sintel_trailer-480p.webm", NULL);
+
+
+        String::Utf8Value command(info[0]->ToString());
+        //std::string prefix("playbin uri=");
+        //std::string uri(*arg);
+
+        //std::string command = prefix + uri;
+        std::cout << *command << std::endl;
+        GstElement *gstPipeline = gst_parse_launch(*command, NULL);
 
         Pipeline *pipeline = Nan::ObjectWrap::Unwrap<Pipeline>(info.This());
         pipeline->gstElement(gstPipeline);
