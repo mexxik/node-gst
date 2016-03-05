@@ -27,7 +27,7 @@ endif(${UNIX})
 
 
 
-set(SOURCE_FILES_01 tutorials/tutorial_01.c)
+set(SOURCE_FILES_01 tutorials/tutorial_01/tutorial_01.c)
 add_executable(tutorial_01 ${SOURCE_FILES_01})
 
 target_link_libraries(tutorial_01 ${GSTREAMER_LIBRARIES})
