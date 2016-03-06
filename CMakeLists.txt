@@ -36,7 +36,7 @@ target_link_libraries(tutorial_01 ${GSTREAMER_LIBRARIES})
 
 
 
-set(SOURCE_FILES_02 tutorials/tutorial_02.c)
+set(SOURCE_FILES_02 tutorials/tutorial_02/tutorial_02.c)
 add_executable(tutorial_02 ${SOURCE_FILES_02})
 
 target_link_libraries(tutorial_02 ${GSTREAMER_LIBRARIES})

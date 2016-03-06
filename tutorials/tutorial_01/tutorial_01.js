@@ -3,7 +3,7 @@ var gst      = require('./../../index');
 var streamer = gst.createStreamer();
 streamer.init();
 
-console.log('starting');
+console.log('starting tutorial 01 - Hello World!');
 
 var pipeline = gst.createPipeline();
 

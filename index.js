@@ -13,6 +13,11 @@ module.exports = {
         var pipeline = new s.Pipeline();
         inherits(pipeline, events.EventEmitter);
         return pipeline;
+    },
+    createElement: function(type, name) {
+        var element = new s.Element(type, name);
+        inherits(element, events.EventEmitter);
+        return element;
     }
 };
 
