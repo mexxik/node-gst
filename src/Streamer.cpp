@@ -26,6 +26,7 @@ void Streamer::Initialize(v8::Local<v8::Object> exports) {
 
 
     NODE_SET_PROTOTYPE_METHOD(tpl, "init", Init);
+    NODE_SET_PROTOTYPE_METHOD(tpl, "link", Link);
 
     //Nan::Set(target, Nan::New("Pipeline").ToLocalChecked(), ctor->GetFunction());
     constructor.Reset(isolate, tpl->GetFunction());
@@ -47,6 +48,13 @@ void Streamer::Init(const FunctionCallbackInfo<Value>& info) {
     gst_init(NULL, NULL);
 
     gst_version (&_majorVersion, &_minorVersion, &_microVersion, &_nanoVersion);
+}
+
+void Streamer::Link(const FunctionCallbackInfo<Value>& info) {
+    Element* source = ObjectWrap::Unwrap<Pipeline>(info[0]->ToObject());
+    Element* destination = ObjectWrap::Unwrap<Element>(info[1]->ToObject());
+
+    gst_element_link(source->gstElement(), destination->gstElement());
 }
 
 /*void Streamer::GetVersion(const FunctionCallbackInfo<Value> &args) {

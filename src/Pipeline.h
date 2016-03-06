@@ -25,8 +25,10 @@ public:
     //static NAN_METHOD(New);
     //static NAN_METHOD(ParseLaunch);
     //static NAN_METHOD(Start);
+    static void New(const v8::FunctionCallbackInfo<v8::Value>& info);
     static void ParseLaunch(const v8::FunctionCallbackInfo<v8::Value>& info);
     static void Start(const v8::FunctionCallbackInfo<v8::Value>& info);
+    static void Add(const v8::FunctionCallbackInfo<v8::Value>& info);
 
     //static NAN_METHOD(Play);
 

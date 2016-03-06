@@ -36,6 +36,21 @@ void Element::Initialize(Local<Object> exports) {
 void Element::New(const FunctionCallbackInfo<Value>& info) {
     Element* element = new Element();
     element->Wrap(info.This());
+
+    GstElement* gstElement;
+
+    String::Utf8Value type(info[0]->ToString());
+
+    if (info.Length() > 1 && info[1]->IsString()) {
+        String::Utf8Value name(info[1]->ToString());
+        gstElement = gst_element_factory_make(*type, *name);
+    }
+    else {
+        gstElement = gst_element_factory_make(*type, NULL);
+    }
+
+    element->gstElement(gstElement);
+
     info.GetReturnValue().Set(info.This());
 }
 

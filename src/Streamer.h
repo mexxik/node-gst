@@ -30,6 +30,8 @@ public:
     static void Init(const v8::FunctionCallbackInfo<v8::Value>& info);
     //static NAN_METHOD(Init);
 
+    static void Link(const v8::FunctionCallbackInfo<v8::Value>& info);
+
     inline guint majorVersion() { return _majorVersion; }
     inline void majorVersion(guint value) {_majorVersion = value; }
 
