@@ -8,11 +8,11 @@
 #include <node.h>
 #include <node_object_wrap.h>
 
-#include <nan.h>
-
 #include <gst/gst.h>
 
-class Element : public Nan::ObjectWrap{
+#include <nan.h>
+
+class Element : public node::ObjectWrap {
 public:
 
     static v8::Persistent<v8::Function> constructor;

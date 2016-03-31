@@ -17,9 +17,8 @@ extern "C" {
 #include "Element.h"
 #include "Pipeline.h"
 
-#include <nan.h>
 
-class Streamer : public Nan::ObjectWrap {
+class Streamer : public node::ObjectWrap {
 public:
     //static void Init(v8::Handle<v8::Object> target);
     static v8::Persistent<v8::Function> constructor;

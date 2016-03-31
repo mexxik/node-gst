@@ -6,7 +6,8 @@
         "src/exports.cpp",
         "src/Streamer.cpp",
         "src/Element.cpp",
-        "src/Pipeline.cpp"
+        "src/Pipeline.cpp",
+        "src/Bus.cpp"
       ],
 
       "conditions": [

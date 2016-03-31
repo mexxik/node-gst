@@ -1,7 +1,3 @@
-//
-// Created by Max Golovanchuk on 1/28/16.
-//
-
 #include "Pipeline.h"
 
 using namespace v8;
@@ -85,7 +81,7 @@ void Pipeline::Start(const FunctionCallbackInfo<Value>& info) {
 
 
     GstMessage *msg = gst_bus_timed_pop_filtered(bus, GST_CLOCK_TIME_NONE, GST_MESSAGE_EOS);
-
+/*
     if(msg != NULL) {
         //GError *err;
         //gchar *debugInfo;
@@ -101,7 +97,7 @@ void Pipeline::Start(const FunctionCallbackInfo<Value>& info) {
                 //pipeline->Emit(info, String::NewFromUtf8(isolate, "eos"));
                 break;
         }
-    }
+    }*/
 }
 
 void Pipeline::Add(const FunctionCallbackInfo<Value>& info) {
