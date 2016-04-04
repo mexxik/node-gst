@@ -76,11 +76,11 @@ void Pipeline::Start(const FunctionCallbackInfo<Value>& info) {
 
     pipeline->Play(info);
 
-    GstBus *bus = gst_element_get_bus(pipeline->gstElement());
+    //GstBus *bus = gst_element_get_bus(pipeline->gstElement());
 
 
 
-    GstMessage *msg = gst_bus_timed_pop_filtered(bus, GST_CLOCK_TIME_NONE, GST_MESSAGE_EOS);
+    //GstMessage *msg = gst_bus_timed_pop_filtered(bus, GST_CLOCK_TIME_NONE, GST_MESSAGE_EOS);
 /*
     if(msg != NULL) {
         //GError *err;

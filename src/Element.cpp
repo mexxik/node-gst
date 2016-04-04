@@ -63,10 +63,12 @@ void Element::Play(const FunctionCallbackInfo<Value>& info) {
     info.GetReturnValue().Set(info.This());
 }
 
-void Element::Emit(const FunctionCallbackInfo<Value>& info, Local<String> name) {
+void Element::Emit(const FunctionCallbackInfo<Value>& info, Local<String> name, Local<Value> value) {
+    g_print("emitting\n");
+
     Isolate *isolate = info.GetIsolate();
     Local<Function> callback = Local<Function>::Cast(String::NewFromUtf8(isolate, "emit"));
-    Handle<Value> params[] = {
+    Handle<Value> params[1] = {
         name
     };
 
