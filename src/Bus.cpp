@@ -46,9 +46,8 @@ void Bus::Watch(const FunctionCallbackInfo<Value>& info) {
     guint watchId = gst_bus_add_watch(bus->gstBus(), bus->BusCallback, (void*)watchHelper);
     bus->watchId(watchId);*/
 }
-
-gboolean BusCallback(GstBus *bus, GstMessage *message, gpointer data) {
+/*gboolean BusCallback(GstBus *bus, GstMessage *message, gpointer data) {
 
 
     return TRUE;
-}
+}*/

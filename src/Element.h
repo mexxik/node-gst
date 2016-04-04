@@ -10,7 +10,6 @@
 
 #include <gst/gst.h>
 
-#include <nan.h>
 
 class Element : public node::ObjectWrap {
 public:
