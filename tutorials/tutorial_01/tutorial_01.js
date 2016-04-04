@@ -6,6 +6,9 @@ streamer.init();
 console.log('starting tutorial 01 - Hello World!');
 
 var pipeline = gst.createPipeline();
+var bus = gst.createBus(pipeline);
+
+//bus.watch();
 
 pipeline.on('eos', function() {
     console.log('end of stream');

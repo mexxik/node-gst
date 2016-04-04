@@ -56,17 +56,22 @@ void Element::New(const FunctionCallbackInfo<Value>& info) {
 
 //NAN_METHOD(Element::Play) {
 void Element::Play(const FunctionCallbackInfo<Value>& info) {
-    Element *element = Nan::ObjectWrap::Unwrap<Element>(info.This());
+    Element *element = ObjectWrap::Unwrap<Element>(info.This());
 
     gst_element_set_state(element->gstElement(), GST_STATE_PLAYING);
 
     info.GetReturnValue().Set(info.This());
 }
 
-void Element::Emit(const FunctionCallbackInfo<Value>& info, Local<String> name) {
-    Handle<Value> params[] = {
+void Element::Emit(const FunctionCallbackInfo<Value>& info, Local<String> name, Local<Value> value) {
+    g_print("emitting\n");
+
+    Isolate *isolate = info.GetIsolate();
+    Local<Function> callback = Local<Function>::Cast(String::NewFromUtf8(isolate, "emit"));
+    Handle<Value> params[1] = {
         name
     };
 
-    Nan::MakeCallback(info.This(), "emit", 1, params);
+    callback->Call(Null(isolate), 1, params);
+    //Nan::MakeCallback(info.This(), "emit", 1, params);
 }

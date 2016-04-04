@@ -8,11 +8,10 @@
 #include <node.h>
 #include <node_object_wrap.h>
 
-#include <nan.h>
-
 #include <gst/gst.h>
 
-class Element : public Nan::ObjectWrap{
+
+class Element : public node::ObjectWrap {
 public:
 
     static v8::Persistent<v8::Function> constructor;
@@ -31,7 +30,7 @@ protected:
     Element();
     ~Element();
 
-    void Emit(const v8::FunctionCallbackInfo<v8::Value>& info, v8::Local<v8::String> name);
+    void Emit(const v8::FunctionCallbackInfo<v8::Value>& info, v8::Local<v8::String> name, v8::Local<v8::Value> value);
 
     GstElement *_gstElement;
 };

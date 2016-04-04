@@ -6,7 +6,8 @@
         "src/exports.cpp",
         "src/Streamer.cpp",
         "src/Element.cpp",
-        "src/Pipeline.cpp"
+        "src/Pipeline.cpp",
+        "src/Bus.cpp"
       ],
 
       "conditions": [
@@ -22,11 +23,19 @@
             "MACOSX_DEPLOYMENT_TARGET": "10.7"
           },
           "include_dirs": [
-              "/Library/Frameworks/GStreamer.framework/Headers"
+            "/Library/Frameworks/GStreamer.framework/Headers"
+          ],
+          "library_dirs": [
+            "/Library/Frameworks/GStreamer.framework/Versions/1.0/lib"
+          ],
+          "link_settings": {
+            "libraries": [
+              "-lgstreamer-1.0"
             ],
-            "library_dirs": [
-              "/Library/Frameworks/GStreamer.framework/Versions/1.0/lib"
+            "ldflags": [
+              "-Wl,-rpath,/Library/Frameworks/GStreamer.framework/Versions/1.0/lib"
             ]
+          }
         }],
         [ "OS=='linux'", {
             "include_dirs": [
@@ -34,7 +43,7 @@
               ],
               "libraries": [
                 "<!@(pkg-config gstreamer-1.0 --libs)"
-              ],
+              ]
         }]
       ]
     }
