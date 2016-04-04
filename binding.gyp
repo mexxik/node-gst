@@ -22,8 +22,7 @@
             "MACOSX_DEPLOYMENT_TARGET": "10.7"
           },
           "include_dirs": [
-              "/Library/Frameworks/GStreamer.framework/Headers",
-              "<!(node -e \"require('nan')\")"
+              "/Library/Frameworks/GStreamer.framework/Headers"
             ],
             "library_dirs": [
               "/Library/Frameworks/GStreamer.framework/Versions/1.0/lib"
@@ -31,8 +30,7 @@
         }],
         [ "OS=='linux'", {
             "include_dirs": [
-                "<!@(pkg-config gstreamer-1.0 --cflags-only-I | sed s/-I//g)",
-                "<!(node -e \"require('nan')\")"
+                "<!@(pkg-config gstreamer-1.0 --cflags-only-I | sed s/-I//g)"
               ],
               "libraries": [
                 "<!@(pkg-config gstreamer-1.0 --libs)"
